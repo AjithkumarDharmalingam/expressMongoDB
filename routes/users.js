@@ -60,9 +60,9 @@ router.get('/:id',async(req,res)=>{
   client.connect()
   try {
     let db = await client.db(dbName)
-    let users = await db.collection('users').findOne({_id:mongodb.ObjectId(req.params.id)})
+    let user = await db.collection('users').findOne({_id:new mongodb.ObjectId(req.params.id)})
     res.status(200).send({
-      users
+      user
     })
   } catch (error) {
     console.log(error);
